@@ -20,18 +20,18 @@ jobs:
         working-directory: ${{ matrix.major }}/${{ matrix.os }}
         env:
           DOCKER_BUILDKIT: 1
+          TAG_VERSION: $(grep -oE 'NGINX_VERSION [0-9].[0-9]{1,3}+.[0-9]{1,3}+' Dockerfile | grep -oE '[0-9].[0-9]{1,3}+.[0-9]{1,3}+')
         run: |
           docker build \
           --pull \
           --file Dockerfile \
           --tag chinayin/nginx:${{ matrix.major }} \
-          --tag chinayin/nginx:$(grep -oE 'NGINX_VERSION [0-9].[0-9]+.[0-9]+' Dockerfile | grep -oE '[0-9].[0-9]+.[0-9]+') \
+          --tag chinayin/nginx:${TAG_VERSION} \
           .
       - name: Push image to Docker hub
         if: success()
-        working-directory: ${{ matrix.major }}/${{ matrix.os }}/${{ matrix.variant }}
         run: |
           echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
           docker push chinayin/nginx:${{ matrix.major }}
-          docker push chinayin/nginx:$(grep -oE 'NGINX_VERSION [0-9].[0-9]+.[0-9]+' Dockerfile | grep -oE '[0-9].[0-9]+.[0-9]+')
+          docker push chinayin/nginx:${TAG_VERSION}
           docker logout
