@@ -9,7 +9,7 @@ Nginx (pronounced "engine-x") is an open source reverse proxy server for HTTP, H
 
 ### Supported tags and respective `Dockerfile` links
 
-![](https://img.shields.io/docker/v/chinayin/nginx/1.19)
+![](https://img.shields.io/docker/v/chinayin/nginx/1.20)
 
 ### Image Variants
 
@@ -20,7 +20,7 @@ Nginx (pronounced "engine-x") is an open source reverse proxy server for HTTP, H
 You can use the image directly, e.g.
 
 ```
-docker run --rm -it chinayin/nginx:1.19
+docker run --rm -it chinayin/nginx:1.20
 ```
 
 The images are built daily and have the security release enabled, so will contain any security updates released more
@@ -29,5 +29,5 @@ than 24 hours ago.
 You can also use the images as a base for your own Dockerfile:
 
 ```
-FROM chinayin/nginx:1.19
+FROM chinayin/nginx:1.20
 ```
