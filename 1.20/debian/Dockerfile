@@ -5,13 +5,13 @@
 #--------------------------------------------------------------------------
 #
 
-FROM chinayin/debian:buster-slim
+FROM chinayin/debian:bullseye-slim
 
 LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
 
-ENV NGINX_VERSION   1.20.1
-ENV NJS_VERSION     0.5.3
-ENV PKG_RELEASE     1~buster
+ENV NGINX_VERSION   1.20.2
+ENV NJS_VERSION     0.7.0
+ENV PKG_RELEASE     1~bullseye
 
 RUN set -x \
 # create nginx user/group first, to be consistent throughout docker variants
@@ -23,9 +23,7 @@ RUN set -x \
     NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
     found=''; \
     for server in \
-        ha.pool.sks-keyservers.net \
         hkp://keyserver.ubuntu.com:80 \
-        hkp://p80.pool.sks-keyservers.net:80 \
         pgp.mit.edu \
     ; do \
         echo "Fetching GPG key $NGINX_GPGKEY from $server"; \
@@ -42,15 +40,15 @@ RUN set -x \
         nginx-module-njs=${NGINX_VERSION}+${NJS_VERSION}-${PKG_RELEASE} \
     " \
     && case "$dpkgArch" in \
-        amd64|i386|arm64) \
+        amd64|arm64) \
 # arches officialy built by upstream
-            echo "deb https://nginx.org/packages/debian/ buster nginx" >> /etc/apt/sources.list.d/nginx.list \
+            echo "deb https://nginx.org/packages/debian/ bullseye nginx" >> /etc/apt/sources.list.d/nginx.list \
             && apt-get update \
             ;; \
         *) \
 # we're on an architecture upstream doesn't officially build for
 # let's build binaries from the published source packages
-            echo "deb-src https://nginx.org/packages/debian/ buster nginx" >> /etc/apt/sources.list.d/nginx.list \
+            echo "deb-src https://nginx.org/packages/debian/ bullseye nginx" >> /etc/apt/sources.list.d/nginx.list \
             \
 # new directory for storing sources and .deb files
             && tempDir="$(mktemp -d)" \
