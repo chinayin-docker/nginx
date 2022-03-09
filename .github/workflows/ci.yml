@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        major: [ '1.20' ]
+        major: [ '1.20','1.21' ]
         os: [ debian ]
     steps:
       - name: Checkout code
