@@ -13,7 +13,7 @@ port for Microsoft Windows.
 
 ### Supported tags and respective `Dockerfile` links
 
-![](https://img.shields.io/docker/v/chinayin/nginx/1.20)
+![](https://img.shields.io/docker/v/chinayin/nginx/1.22)
 
 ### Image Variants
 
@@ -24,7 +24,7 @@ port for Microsoft Windows.
 You can use the image directly, e.g.
 
 ```
-docker run --rm -it chinayin/nginx:1.20.2
+docker run --rm -it chinayin/nginx:1.22.0
 ```
 
 The images are built daily and have the security release enabled, so will contain any security updates released more
@@ -33,5 +33,5 @@ than 24 hours ago.
 You can also use the images as a base for your own Dockerfile:
 
 ```
-FROM chinayin/nginx:1.20
+FROM chinayin/nginx:1.22
 ```
