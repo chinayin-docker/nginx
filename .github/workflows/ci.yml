@@ -19,9 +19,9 @@ jobs:
         id: vars
         working-directory: ${{ matrix.major }}/${{ matrix.os }}
         run: |
-          echo ::set-output name=repository::${GITHUB_ACTOR}/$(basename ${GITHUB_REPOSITORY})
-          echo ::set-output name=version::$(grep ' NGINX_VERSION ' Dockerfile | awk '{print $3}')
-          echo ::set-output name=workdir::${{ matrix.major }}/${{ matrix.os }}
+          echo "repository=${GITHUB_ACTOR}/$(basename ${GITHUB_REPOSITORY})" >> $GITHUB_OUTPUT
+          echo "version=$(grep ' NGINX_VERSION ' Dockerfile | awk '{print $3}')" >> $GITHUB_OUTPUT
+          echo "workdir=${{ matrix.major }}/${{ matrix.os }}" >> $GITHUB_OUTPUT
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
