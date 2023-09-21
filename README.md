@@ -24,7 +24,7 @@ port for Microsoft Windows.
 You can use the image directly, e.g.
 
 ```
-docker run --rm -it chinayin/nginx:1.24.0
+docker run --rm -it chinayin/nginx:1.24
 ```
 
 The images are built daily and have the security release enabled, so will contain any security updates released more
