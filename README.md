@@ -13,18 +13,26 @@ port for Microsoft Windows.
 
 ### Supported tags and respective `Dockerfile` links
 
-![](https://img.shields.io/docker/v/chinayin/nginx/1.22)
+![](https://img.shields.io/docker/v/chinayin/nginx/1.31)
+![](https://img.shields.io/docker/v/chinayin/nginx/1.30)
 
 ### Image Variants
 
-- `nginx:<version>`
+- `nginx:<version>` — e.g. `1.30.6`, `1.31.7`
+- `nginx:<minor>` — e.g. `1.30` (stable), `1.31` (mainline)
+
+| track | nginx | njs | base image |
+|---|---|---|---|
+| `1.30` (stable) | 1.30.6 | 1.0.2 | `chinayin/debian:trixie-slim` |
+| `1.31` (mainline) | 1.31.7 | 1.0.2 | `chinayin/debian:trixie-slim` |
 
 ### Usage
 
 You can use the image directly, e.g.
 
 ```
-docker run --rm -it chinayin/nginx:1.26.2
+docker run --rm -it chinayin/nginx:1.31.7
+docker run --rm -it chinayin/nginx:1.30
 ```
 
 The images are built daily and have the security release enabled, so will contain any security updates released more
@@ -33,5 +41,6 @@ than 24 hours ago.
 You can also use the images as a base for your own Dockerfile:
 
 ```
-FROM chinayin/nginx:1.26.2
+FROM chinayin/nginx:1.31.7
+FROM chinayin/nginx:1.30
 ```
